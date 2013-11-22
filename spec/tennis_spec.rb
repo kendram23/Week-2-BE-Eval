@@ -13,14 +13,10 @@ describe Tennis::Game do
       expect(game.player2).to be_a(Tennis::Player)
     end
 
-    it 'sets the opponent for each player'
-      # player1 = Tennis::Player.new
-      # player2 = Tennis::Player.new
-      # player1.opponent = player2
-      # player2.opponent = player1
-
-      # expect(player1.opponent).to be(player2)
-      # expect(player2.opponent).to be(player1)
+    it 'sets the opponent for each player' do
+      expect(game.player1.opponent).to be(game.player2)
+      expect(game.player2.opponent).to be(game.player1)
+    end
   end
 
   describe '#wins_ball' do
@@ -53,6 +49,8 @@ describe Tennis::Player do
       expect(player.points).to eq(1)
     end
   end
+
+  # Tests to run for each player's score
 
   describe '#score' do
     context 'when points is 0' do
