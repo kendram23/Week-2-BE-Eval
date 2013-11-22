@@ -26,6 +26,7 @@ module Tennis
 
     def initialize
       @points = 0
+      @opponent = opponent
     end
 
     # Increments the score by 1.
@@ -37,7 +38,20 @@ module Tennis
 
     # Returns the String score for the player.
     def score
-      return 'love' if @points == 0
+      case
+      when @points == 0
+        return 'love'
+      when @points == 1
+        return "fifteen"
+      when @points == 2
+        return "thirty"
+      when @points == 3
+        return "forty"
+      when @points == 4
+        return game
+      else
+        return "That's not a valid score"
+      end
     end
   end
 end

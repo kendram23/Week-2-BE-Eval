@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'rspec'
+require 'pry-plus'
 require_relative '../tennis'
 
 describe Tennis::Game do
@@ -13,6 +14,13 @@ describe Tennis::Game do
     end
 
     it 'sets the opponent for each player'
+      # player1 = Tennis::Player.new
+      # player2 = Tennis::Player.new
+      # player1.opponent = player2
+      # player2.opponent = player1
+      
+      # expect(player1.opponent).to be(player2)
+      # expect(player2.opponent).to be(player1)
   end
 
   describe '#wins_ball' do
