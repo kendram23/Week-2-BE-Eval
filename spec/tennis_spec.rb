@@ -26,6 +26,21 @@ describe Tennis::Game do
       expect(game.player1.points).to eq(1)
     end
   end
+
+  describe '#wins_game' do
+    it 'displays the winner of the game' do
+      game.wins_ball(game.player1)
+      game.wins_ball(game.player1)
+      game.wins_ball(game.player1)
+      game.wins_ball(game.player1)
+      game.wins_ball(game.player2)
+      game.wins_ball(game.player2)
+      game.wins_ball(game.player2)
+      game.wins_ball(game.player1)
+      
+      expect(game.wins_game).to eq(game.player1)
+    end
+  end
 end
 
 describe Tennis::Player do
@@ -49,8 +64,6 @@ describe Tennis::Player do
       expect(player.points).to eq(1)
     end
   end
-
-  # Tests to run for each player's score
 
   describe '#score' do
     context 'when points is 0' do
@@ -81,16 +94,17 @@ describe Tennis::Player do
 
         expect(player.score).to eq("forty")
       end
+    end
+  end
 
-    # context 'when points is 4 and the opponent has 2 or less points' do
-    # it 'returns game' do
-    # player.points = 4
+  describe '#score when players have to win by 2' do
+    context 'when players are tied at 3' do
+      it 'runs deuce method' do
+      end
+    end
+  end
 
-    # expect(player.score).to eq('game')
-    # end
-    #   end
-
-    context ''
+    context '' do
     end
   end
 end

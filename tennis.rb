@@ -20,7 +20,11 @@ module Tennis
     end
 
     def wins_game
-
+      if    (@player1.points >= 4 && @player1.points >= player2.points + 2)
+        return @player1
+      else (@player2.points >= 4 && @player2.points >= player1.points + 2)
+        return @player2
+      end
     end
   end
 
@@ -30,6 +34,7 @@ module Tennis
     def initialize
       @points = 0
       @opponent = opponent
+      # @advantage = advantage
     end
 
     # Increments the score by 1.
@@ -47,14 +52,27 @@ module Tennis
       return 'fifteen' if @points == 1
       return 'thirty'  if @points == 2
       return 'forty'   if @points == 3
-      # return 'game'    if @points == 4
+      # if player1.points == 3 && player2.points == 3
+      #   return "Deuce: Players must win by 2 points"
+      # else
+
+      # end
     end
 
-    # When both players have 3 points each, the game has to be won
-    # by 2 additional points.
-    # Player1 = 6 & Player2 = 5
+    #If players are tied at 3, the winner must win by 2 points
+    # def advantage
+        # if (player1.)
+    #   @advantage +=1
+    #   if @advantage == 2
+    #     wins.wins_game
+    #   end
+    # end
 
-    def scout
-    end
+    # # When both players have 3 points each, the game has to be won
+    # # by 2 additional points.
+    # # Player1 = 6 & Player2 = 5
+
+    # def deuce
+    # end
   end
 end
