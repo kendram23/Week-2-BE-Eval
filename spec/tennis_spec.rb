@@ -18,7 +18,7 @@ describe Tennis::Game do
       # player2 = Tennis::Player.new
       # player1.opponent = player2
       # player2.opponent = player1
-      
+
       # expect(player1.opponent).to be(player2)
       # expect(player2.opponent).to be(player1)
   end
@@ -70,11 +70,19 @@ describe Tennis::Player do
     end
     
     context 'when points is 2' do
-      it 'returns thirty'  
+      it 'returns thirty' do
+        player.points = 2
+
+        expect(player.score).to eq("thirty")
+      end
     end
-    
+
     context 'when points is 3' do
-      it 'returns forty' 
+      it 'returns forty' do
+        player.points = 3
+
+        expect(player.score).to eq("forty")
+      end
     end
   end
 end
