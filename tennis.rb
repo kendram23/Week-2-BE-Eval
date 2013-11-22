@@ -16,8 +16,11 @@ module Tennis
     #
     # Returns the score of the winning player. 
     def wins_ball(winner)
-      # TODO: Think it's gross to pass an integer instead of a player object?
-      # Then reimplement this method!
+      winner.record_won_ball!
+    end
+
+    def wins_game
+
     end
   end
 
@@ -33,27 +36,25 @@ module Tennis
     #
     # Returns the integer new score.
     def record_won_ball!
-      if @player.wins_ball
-        @player.points += 1
-      end
+      @points +=1
     end
 
     # Returns the String score for the player.
+    #
+    # Points - Player wins at 4 points, unless scout method occurs
     def score
-      case
-      when @points == 0
-        return 'love'
-      when @points == 1
-        return "fifteen"
-      when @points == 2
-        return "thirty"
-      when @points == 3
-        return "forty"
-      when @points == 4
-        return game
-      else
-        return "That's not a valid score"
-      end
+      return 'love'    if @points == 0
+      return 'fifteen' if @points == 1
+      return 'thirty'  if @points == 2
+      return 'forty'   if @points == 3
+      # return 'game'    if @points == 4
+    end
+
+    # When both players have 3 points each, the game has to be won
+    # by 2 additional points.
+    # Player1 = 6 & Player2 = 5
+
+    def scout
     end
   end
 end

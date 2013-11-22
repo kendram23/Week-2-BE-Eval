@@ -21,7 +21,7 @@ describe Tennis::Game do
 
   describe '#wins_ball' do
     it 'increments the points of the winning player' do
-      game.wins_ball(1)
+      game.wins_ball(game.player1)
 
       expect(game.player1.points).to eq(1)
     end
@@ -81,6 +81,16 @@ describe Tennis::Player do
 
         expect(player.score).to eq("forty")
       end
+
+    # context 'when points is 4 and the opponent has 2 or less points' do
+    # it 'returns game' do
+    # player.points = 4
+
+    # expect(player.score).to eq('game')
+    # end
+    #   end
+
+    context ''
     end
   end
 end
