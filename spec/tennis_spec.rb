@@ -27,7 +27,7 @@ describe Tennis::Game do
     end
   end
 
-  describe '#wins_game' do
+  describe '#wins_game?' do
     it 'displays the winner of the game' do
       game.wins_ball(game.player1)
       game.wins_ball(game.player1)
@@ -38,7 +38,7 @@ describe Tennis::Game do
       game.wins_ball(game.player2)
       game.wins_ball(game.player1)
       
-      expect(game.wins_game).to eq(game.player1)
+      expect(game.wins_game?).to be(game.player1)
     end
   end
 end
@@ -48,8 +48,11 @@ describe Tennis::Player do
     player = Tennis::Player.new
     player.opponent = Tennis::Player.new
 
+
     return player
   end
+
+  let(:game) { Tennis::Game.new }
 
   describe '.initialize' do
     it 'sets the points to 0' do
@@ -84,7 +87,7 @@ describe Tennis::Player do
       it 'returns thirty' do
         player.points = 2
 
-        expect(player.score).to eq("thirty")
+        expect(player.score).to eq('thirty')
       end
     end
 
@@ -92,19 +95,38 @@ describe Tennis::Player do
       it 'returns forty' do
         player.points = 3
 
-        expect(player.score).to eq("forty")
+        expect(player.score).to eq('forty')
       end
     end
+
   end
 
   describe '#score when players have to win by 2' do
-    context 'when players are tied at 3' do
-      it 'runs deuce method' do
+    context 'players are tied at 3' do
+      it 'returns deuce' do
+        player.points = 4
+        player.opponent.points = 4
+
+        expect(player.score).to eq('deuce')
       end
     end
-  end
 
-    context '' do
+        context 'player has 4 or more points and is up by 1' do
+      it "returns advantage" do
+        player.points = 5
+        player.opponent.points = 4
+
+        expect(player.score).to eq('advantage')
+      end
+    end
+
+    context 'player has 4 or more points and is winning by 2' do
+      it 'returns win' do 
+        player.points = 5
+        player.opponent.points = 3
+
+        expect(player.score).to eq('win')
+      end 
     end
   end
 end

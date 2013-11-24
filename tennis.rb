@@ -19,14 +19,29 @@ module Tennis
       winner.record_won_ball!
     end
 
-    def wins_game
-      if    (@player1.points >= 4 && @player1.points >= player2.points + 2)
+    # Checks to see if player's score is 'win', if so it returns that player
+    #
+    # If either players' score isn't equal to 'win', it returns the scores
+    def wins_game?
+      if @player1.score == 'win'
         return @player1
-      else (@player2.points >= 4 && @player2.points >= player1.points + 2)
-        return @player2
+      elsif @player2.score == 'win'
+        return @Player2
+      else
+        return "The score is currently, Player1: #{player1.score} to Player2: #{player2.score}."
       end
     end
   end
+
+  # Player class stores individual information about each player
+  #
+  # Points - the number of points the player has. Game goes to
+  # 4 points as long as the player is up by 2.
+  # Otherwise game play continues until the player wins by 2 points
+  #
+  # Opponent -
+  #
+  # Advantage - Results in true if one player has the advantage
 
   class Player
     attr_accessor :points, :opponent
@@ -34,7 +49,7 @@ module Tennis
     def initialize
       @points = 0
       @opponent = opponent
-      # @advantage = advantage
+      @advantage = false
     end
 
     # Increments the score by 1.
@@ -46,33 +61,29 @@ module Tennis
 
     # Returns the String score for the player.
     #
-    # Points - Player wins at 4 points, unless scout method occurs
+    # Points - Player wins at 4 points, unless deuce method occurs
+    #
+    # Deuce - Players must win by 2 points
+    #
+    # Win - Player has 4 or more points and is up by 2
     def score
-      return 'love'    if @points == 0
-      return 'fifteen' if @points == 1
-      return 'thirty'  if @points == 2
-      return 'forty'   if @points == 3
-      # if player1.points == 3 && player2.points == 3
-      #   return "Deuce: Players must win by 2 points"
-      # else
-
-      # end
+      return 'win'       if (@points >= 4 && @points >= opponent.points + 2)
+      return 'deuce'     if (@points >= 3 && @points == opponent.points)
+      return 'advantage' if (@points >= 3 && @points == opponent.points + 1)
+      return 'love'      if  @points == 0
+      return 'fifteen'   if  @points == 1
+      return 'thirty'    if  @points == 2
+      return 'forty'     if  @points == 3
     end
 
-    #If players are tied at 3, the winner must win by 2 points
-    # def advantage
-        # if (player1.)
-    #   @advantage +=1
-    #   if @advantage == 2
-    #     wins.wins_game
-    #   end
-    # end
-
-    # # When both players have 3 points each, the game has to be won
-    # # by 2 additional points.
-    # # Player1 = 6 & Player2 = 5
-
-    # def deuce
-    # end
+    #
+    def has_advantage?
+      if (player.score == 'advantage')
+        return "has advantage"
+        @advantage == true
+      else
+        player.opponent.advantage == false
+      end
+    end
   end
 end
