@@ -128,5 +128,27 @@ describe Tennis::Player do
         expect(player.score).to eq('win')
       end 
     end
+
+    context 'the players have a really really long match' do
+      it 'returns deuce' do 
+        player.points = 50000
+        player.opponent.points = 50000
+
+        expect(player.score).to eq('deuce')
+      end
+
+      it 'returns advantage' do
+        player.points = 50001
+        player.opponent.points = 50000
+
+        expect(player.score).to eq('advantage')
+      end 
+      it 'returns wins' do
+        player.points = 50002
+        player.opponent.points = 50000
+
+        expect(player.score).to eq('win')
+      end 
+    end
   end
 end
