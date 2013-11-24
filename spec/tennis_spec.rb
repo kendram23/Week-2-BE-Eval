@@ -24,6 +24,11 @@ describe Tennis::Game do
       game.wins_ball(game.player1)
 
       expect(game.player1.points).to eq(1)
+      
+      game.wins_ball(game.player2)
+      game.wins_ball(game.player2)
+
+      expect(game.player2.points).to eq(2)
     end
   end
 
@@ -39,6 +44,21 @@ describe Tennis::Game do
       game.wins_ball(game.player1)
       
       expect(game.wins_game?).to be(game.player1)
+      
+      game.wins_ball(game.player2)
+      game.wins_ball(game.player1)
+      game.wins_ball(game.player1)
+      game.wins_ball(game.player1)
+      game.wins_ball(game.player2)
+      game.wins_ball(game.player2)
+      game.wins_ball(game.player2)
+      game.wins_ball(game.player1)
+      game.wins_ball(game.player2)
+      game.wins_ball(game.player2)
+      game.wins_ball(game.player2)
+      game.wins_ball(game.player2)
+      
+      expect(game.wins_game?).to be(game.player2)
     end
   end
 end
@@ -142,7 +162,8 @@ describe Tennis::Player do
         player.opponent.points = 50000
 
         expect(player.score).to eq('advantage')
-      end 
+      end
+      
       it 'returns wins' do
         player.points = 50002
         player.opponent.points = 50000
