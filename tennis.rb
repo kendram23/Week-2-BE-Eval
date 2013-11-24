@@ -39,7 +39,7 @@ module Tennis
   # 4 points as long as the player is up by 2.
   # Otherwise game play continues until the player wins by 2 points
   #
-  # Opponent -
+  # Opponent - The opponent for the called upon player
   #
   # Advantage - Results in true if one player has the advantage
 
@@ -76,7 +76,7 @@ module Tennis
       return 'forty'     if  @points == 3
     end
 
-    #
+    # Player has advantage when their score is 4 or more and they are up by 1 point
     def has_advantage?
       if (player.score == 'advantage')
         return "has advantage"
